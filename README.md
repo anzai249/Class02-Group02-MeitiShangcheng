@@ -1,4 +1,4 @@
-# meiti-ahangcheng-administrative-system
+# meiti-shangcheng-administrative-system
 
 > The Meiti Shangcheng Administrative System developed by Class 2 Group 2 led by Berlin Ann(AN Bailin) 0202.
 
