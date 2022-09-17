@@ -139,7 +139,14 @@ export default {
                 }
               })
             } else {
-              alert('员工系统没做好呢等着去吧');
+              this.$router.push({
+                path: '/employeeSystem',
+                name: "employeeSystem",
+                params: {
+                  id: info.ID,
+                  name: info.Name
+                }
+              })
             }
         }
         // if (info == "Err00") {
