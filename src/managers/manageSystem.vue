@@ -16,8 +16,8 @@ body {
             <el-menu-item index="/"><a target="_self" style="text-decoration: none;" @click="logOut()">Log
                     out</a>
             </el-menu-item>
-            <el-menu-item style="-webkit-app-region: drag;">&ensp;&ensp;<i
-                    class="el-icon-rank"></i>&ensp;&ensp;Hello, {{userName}}!
+            <el-menu-item style="-webkit-app-region: drag;">&ensp;&ensp;<i class="el-icon-rank"></i>&ensp;&ensp;Hello,
+                {{userName}}!
             </el-menu-item>
         </el-menu>
         <router-view></router-view>
@@ -39,18 +39,9 @@ export default {
             console.log(key, keyPath);
         },
         logOut() {
-            this.$router.push('/')
-            // 确认窗口
-            // this.$dialog.showMessageBox({
-            //     type: 'warning',
-            //     title: 'Warning',
-            //     message: 'Do you want to log out?',
-            //     buttons: ['Yes', 'No']
-            // }).then((index) => {
-            //     if (index.response == 1) {
-            //         this.$router.push('/')
-            //     }
-            // });
+            if (confirm("Log out?")) {
+                this.$router.push('/')
+            }
         }
     }
 }
