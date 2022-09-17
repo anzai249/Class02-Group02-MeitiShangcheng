@@ -20,7 +20,7 @@ body {
                 {{userName}}!
             </el-menu-item>
         </el-menu>
-        <router-view></router-view>
+        <router-view :userid="userid"></router-view>
     </div>
 </template>
     <router-view/>

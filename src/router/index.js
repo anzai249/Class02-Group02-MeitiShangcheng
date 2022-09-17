@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import UserLogin from '@/intro/UserLogin'
 import manageSystem from '@/managers/manageSystem'
 import employeeSystem from '@/employees/employeeSystem'
+import attendanceCheck from '@/employees/attendanceCheck'
 import employeeManager from '@/managers/employeeManager'
 import depotManager from '@/managers/depotManager'
 import ElementUI from 'element-ui'
@@ -41,9 +42,9 @@ export default new Router({
       name: 'employeeSystem',
       component: employeeSystem,
       children: [{
-        path: '/employeeSystem/employeeManager',
-        name: 'employeeManager',
-        component: employeeManager
+        path: '/employeeSystem/attendanceCheck',
+        name: 'attendanceCheck',
+        component: attendanceCheck
       },
       {
         path: '/employeeSystem/depotManager',

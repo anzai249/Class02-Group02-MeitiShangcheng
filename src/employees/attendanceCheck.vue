@@ -6,16 +6,14 @@ body {
 <template>
     <div>
         <h1>-Your Work Shift-</h1><br />
-        <h2>{{Workshift}}</h2>
+        <h2>{{userid}}</h2>
     </div>
 </template>
 <script>
 export default {
+    props: ['userid'], // Recieve employee id from employeeSystem
     data() {
         return {
-            userid: this.$route.params.id,
-            userName: this.$route.params.name,
-            Workshift: this.$route.params.name
         };
     },
     methods: {
