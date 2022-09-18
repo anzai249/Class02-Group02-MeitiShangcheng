@@ -4,6 +4,7 @@ import UserLogin from '@/intro/UserLogin'
 import manageSystem from '@/managers/manageSystem'
 import employeeSystem from '@/employees/employeeSystem'
 import attendanceCheck from '@/employees/attendanceCheck'
+import editInformation from '@/employees/editInformation'
 import employeeManager from '@/managers/employeeManager'
 import depotManager from '@/managers/depotManager'
 import ElementUI from 'element-ui'
@@ -47,9 +48,9 @@ export default new Router({
         component: attendanceCheck
       },
       {
-        path: '/employeeSystem/depotManager',
-        name: 'depotManager',
-        component: depotManager
+        path: '/employeeSystem/editInformation',
+        name: 'editInformation',
+        component: editInformation
       }
     ]
     }
