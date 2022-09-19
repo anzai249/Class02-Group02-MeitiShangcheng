@@ -25,38 +25,7 @@ const result = {
     "status": "200",
     "message": "success",
 }
-//获取数据列表
-app.use('/list', function (req, res) {
-    connection.query('SELECT * from managers', function (error, results, fields) {
-        if (error) throw error;
-        result.data = results
-        res.json(result)
-    });
-})
-//新增数据列表
-app.post('/add', function (req, res) {
-    connection.query('INSERT INTO user_info(name,age)VALUES(?,?)', ['撒谎', '25'], function (error, results, fields) {
-        if (error) throw error;
-        result.data = results
-        res.json(result)
-    });
-})
-//修改数据列表
-app.post('/modify', function (req, res) {
-    connection.query('update user_info set name=? where id=2', ['暗时'], function (error, results, fields) {
-        if (error) throw error;
-        result.data = results
-        res.json(result)
-    });
-})
-//   删除数据列表
-app.post('/delete', function (req, res) {
-    connection.query('delete from user_info where id=2', function (error, results, fields) {
-        if (error) throw error;
-        result.data = results
-        res.json(result)
-    });
-})
+
 // Login
 app.post('/login', function (req, res) {
     var id = req.query.id
