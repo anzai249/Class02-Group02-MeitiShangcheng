@@ -7,6 +7,7 @@ import attendanceCheck from '@/employees/attendanceCheck'
 import editInformation from '@/employees/editInformation'
 import employeeManager from '@/managers/employeeManager'
 import depotManager from '@/managers/depotManager'
+import staticView from '@/managers/staticView'
 import ElementUI from 'element-ui'
 import enLocale from 'element-ui/lib/locale/lang/en'
 import 'element-ui/lib/theme-chalk/index.css'
@@ -35,6 +36,11 @@ export default new Router({
         path: '/manageSystem/depotManager',
         name: 'depotManager',
         component: depotManager
+      },
+      {
+        path: '/manageSystem/staticView',
+        name: 'staticView',
+        component: staticView
       }
     ]
     },
