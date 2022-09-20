@@ -169,7 +169,7 @@ app.post('/editMerchandise', function (req, res) {
         res.send('Success.')
     });
 })
-//delete Merchandise
+// delete Merchandise
 app.post('/removeMerchandise', function (req, res) {
     var id = req.query.id
     connection.query('delete from depot where MerchandiseID='+id, function (error, results, fields) {
@@ -179,6 +179,22 @@ app.post('/removeMerchandise', function (req, res) {
         res.send('Success.')
     });
 })
+// END OF THE DEPOT PAGE //
+// BEGIN OF THE CHECK PAGE //
+// get work shift
+app.post('/getWorkShift', function (req, res) {
+    var id = req.query.userid
+    if(!id){
+        res.send('error00')
+        return
+    }
+    connection.query('SELECT WorkShift from employees where ID='+id, function (error, results, fields) {
+        if (error) throw error;
+        var info = results
+        res.send(info)
+    });
+})
+
 app.listen('8090', () => {
     console.log('Listening port 8090')
 })

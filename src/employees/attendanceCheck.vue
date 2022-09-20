@@ -2,26 +2,66 @@
 body {
     background-color: black;
 }
+
 #btn {
-    width: 50px;height: 50px;border-radius: 50%;border: none
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: none
+}
+
+.checkShift {
+    top: 100px;
+    position: absolute;
+    width: 99%;
 }
 </style>
 <template>
-    <div>
+    <div class="checkShift">
         <h1>-Your Work Shift-</h1><br />
-        <h2>{{userid}}</h2>
+        <h2>{{currentWorkShift[0]}}</h2>
         <input type="button" value="Check" id="btn">
     </div>
 </template>
 <script>
 export default {
     props: ['userid'], // Recieve employee id from employeeSystem
-    data() {
-        return {
-        };
-    },
     methods: {
-
+        loadWorkShift(userid) {
+            let WorkShift = new Array();
+            var i = 0;
+            this.$request({
+                url: "/getWorkShift",
+                params: { userid },
+                method: "post"
+            }).then(res => {
+                var info = res.data;
+                if (info != 'undefined') {
+                    WorkShift.push(
+                        info[0].WorkShift,
+                    )
+                    return WorkShift
+                } else if (info === 'error00') {
+                    alert('Please login again!');
+                }
+            }).catch(err => {
+                return
+            })
+            return WorkShift
+        }
+    },
+    watch: {
+        userid: function (newVal, oldVal) {
+            this.newUserid = newVal;
+            this.loadWorkShift();
+        }
+    },
+    data() {
+        var a = this.loadWorkShift(this.userid)
+        return {
+            newUserid: null,
+            currentWorkShift: a,
+        }
     }
 }
 </script>
