@@ -1,6 +1,9 @@
-# meiti-shangcheng-administrative-system
+# Meiti Shangcheng Administrative System
 
 > The Meiti Shangcheng Administrative System developed by Class 2 Group 2 led by Berlin Ann(AN Bailin) 0202.
+
+Build with Vue.
+![LOGO?](/build/logo.png)
 
 ## Build Setup
 
