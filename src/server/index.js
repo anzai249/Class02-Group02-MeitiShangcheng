@@ -194,7 +194,30 @@ app.post('/getWorkShift', function (req, res) {
         res.send(info)
     });
 })
-
+// check it
+app.post('/checkIt', function (req, res) {
+    var id = req.query.userid
+    var checkedShift = "error"
+    if(!id){
+        res.send('error00')
+        return
+    }
+    var d = new Date();
+    var hour= d.getHours();
+    if(hour>4&&hour<=12){
+        checkedShift = "Morning"
+    }else if(hour>12&&hour<=20){
+        checkedShift = "Afternoon"
+    }else if(hour>20||hour<=4){
+        checkedShift = "Evening"
+    }else{
+        checkedShift = "error"
+    }
+    connection.query('update employees set Attendance=? where ID='+id, [checkedShift], function (error, results, fields) {
+        if (error) throw error;
+        res.send('Success.')
+    });
+})
 app.listen('8090', () => {
     console.log('Listening port 8090')
 })
