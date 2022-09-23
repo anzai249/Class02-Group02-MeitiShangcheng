@@ -12,6 +12,12 @@ body {
 <script>
 export default {
     props: ['userid'], // Recieve employee id from employeeSystem
+    watch: {
+        userid: function (newVal, oldVal) {
+            this.newUserid = newVal;
+            // this.loadWorkShift();
+        }
+    },
     data() {
         return {
         };
