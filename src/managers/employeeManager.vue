@@ -93,9 +93,9 @@
                     <el-option label="Other" value="other"></el-option>
                 </el-select>
                 <el-select v-model="addForm.workshift" placeholder="WorkShift">
-                    <el-option label="Morning" value="morning"></el-option>
-                    <el-option label="Afternoon" value="afternoon"></el-option>
-                    <el-option label="Evening" value="evening"></el-option>
+                    <el-option label="Morning" value="Morning"></el-option>
+                    <el-option label="Afternoon" value="Afternoon"></el-option>
+                    <el-option label="Evening" value="Evening"></el-option>
                 </el-select>
                 <p>The password will be set to default "123456".</p>
             </el-form>
@@ -135,9 +135,9 @@
                     <el-option label="Other" value="other"></el-option>
                 </el-select>
                 <el-select v-model="editForm.workshift" placeholder="WorkShift">
-                    <el-option label="Morning" value="morning"></el-option>
-                    <el-option label="Afternoon" value="afternoon"></el-option>
-                    <el-option label="Evening" value="evening"></el-option>
+                    <el-option label="Morning" value="Morning"></el-option>
+                    <el-option label="Afternoon" value="Afternoon"></el-option>
+                    <el-option label="Evening" value="Evening"></el-option>
                 </el-select>
             </el-form>
             <div slot="footer" class="dialog-footer">
