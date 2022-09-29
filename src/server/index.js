@@ -218,6 +218,25 @@ app.post('/checkIt', function (req, res) {
         res.send('Success.')
     });
 })
+// get check status
+app.post('/getCheckStatus', function (req, res) {
+    var id = req.query.userid
+    if(!id){
+        res.send('error00')
+        return
+    }
+    connection.query('SELECT Attendance from employees where ID='+id, function (error, results, fields) {
+        if (error) throw error;
+        var info = results
+        console.log(info)
+        res.send(info)
+        // if(info[0].Attendance=="none" || info[0].Attendance=="error"){
+        //     res.send("no")
+        // }else{
+        //     res.send("yes")
+        // }
+    });
+})
 app.listen('8090', () => {
     console.log('Listening port 8090')
 })
