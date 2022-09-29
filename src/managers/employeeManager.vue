@@ -306,7 +306,6 @@ export default {
 
     data() {
         var a = this.loadData()
-        console.log(a)
         return {
             tableData: a,
             dialogVisible: false,
