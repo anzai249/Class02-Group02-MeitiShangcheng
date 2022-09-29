@@ -11,7 +11,7 @@ body {
         top:-3px;
         left: -3px; width: 110%;" background-color="#545c64" text-color="#fff" active-text-color="#ffd04b" router>
             <el-menu-item index="/employeeSystem/attendanceCheck">Attendance Check</el-menu-item>
-            <el-menu-item index="/employeeSystem/sellingSystem">Selling System</el-menu-item>
+            <!-- <el-menu-item index="/employeeSystem/sellingSystem">Selling System</el-menu-item> -->
             <el-menu-item index="/employeeSystem/editInformation">Edit Information</el-menu-item>
             <el-menu-item index="/"><a target="_self" style="text-decoration: none;" @click="logOut()">Log
                     out</a>

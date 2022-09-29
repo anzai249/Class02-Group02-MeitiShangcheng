@@ -30,6 +30,14 @@ body {
                 <el-button type="primary" @click="ageOnSubmit(editAge.age)">Submit</el-button>
             </el-form-item>
         </el-form>
+        <el-form :inline="true" :model="editEmail" class="edit-email">
+            <el-form-item label="Email">
+                <el-input v-model="editEmail.email" placeholder="Your New Email"></el-input>
+            </el-form-item>
+            <el-form-item>
+                <el-button type="primary" @click="emailOnSubmit(editEmail.email)">Submit</el-button>
+            </el-form-item>
+        </el-form>
     </div>
 </template>
 <script>
@@ -49,6 +57,9 @@ export default {
             },
             editAge: {
                 age: ''
+            },
+            editEmail:{
+                email:''
             }
         };
     },
