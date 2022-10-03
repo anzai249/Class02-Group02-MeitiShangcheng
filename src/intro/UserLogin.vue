@@ -129,15 +129,26 @@ export default {
             alert('ID error.');
             break;
           default:
-            if (position == 'manager') {
-              this.$router.push({
-                path: '/manageSystem',
-                name: "manageSystem",
-                params: {
-                  id: info.ID,
-                  name: info.Name
-                }
-              })
+            if (position === 'manager') {
+              if (info.ID === 1) {
+                this.$router.push({
+                  path: '/adminSystem',
+                  name: "adminSystem",
+                  params: {
+                    id: info.ID,
+                    name: info.Name
+                  }
+                })
+              } else {
+                this.$router.push({
+                  path: '/manageSystem',
+                  name: "manageSystem",
+                  params: {
+                    id: info.ID,
+                    name: info.Name
+                  }
+                })
+              }
             } else {
               this.$router.push({
                 path: '/employeeSystem',

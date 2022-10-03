@@ -8,6 +8,9 @@ import editInformation from '@/employees/editInformation'
 import employeeManager from '@/managers/employeeManager'
 import depotManager from '@/managers/depotManager'
 import staticView from '@/managers/staticView'
+import adminSystem from '@/administrator/adminSystem'
+import editManagers from '@/administrator/editManagers'
+import quickActions from '@/administrator/quickActions'
 import ElementUI from 'element-ui'
 import enLocale from 'element-ui/lib/locale/lang/en'
 import 'element-ui/lib/theme-chalk/index.css'
@@ -57,6 +60,22 @@ export default new Router({
         path: '/employeeSystem/editInformation',
         name: 'editInformation',
         component: editInformation
+      }
+    ]
+    },
+    {
+      path: '/adminSystem',
+      name: 'adminSystem',
+      component: adminSystem,
+      children: [{
+        path: '/adminSystem/editManagers',
+        name: 'editManagers',
+        component: editManagers
+      },
+      {
+        path: '/adminSystem/quickActions',
+        name: 'quickActions',
+        component: quickActions
       }
     ]
     }
