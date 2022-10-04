@@ -245,7 +245,10 @@ export default {
                 title: {
                     text: 'Remaining Merchandise'
                 },
-                tooltip: {},
+                tooltip: {
+                    trigger: 'item',
+                    formatter: '{a} <br/>{b} : {c} ({d}%)'
+                },
                 legend: {
                     data: ['Amount']
                 },
@@ -277,7 +280,7 @@ export default {
                     }
                     chart4.setOption({
                         title: {
-                            text: 'Remaining Merchandise'
+                            text: 'Employees by WorkShift'
                         },
                         tooltip: {},
                         legend: {
