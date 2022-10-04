@@ -8,6 +8,7 @@ import editInformation from '@/employees/editInformation'
 import employeeManager from '@/managers/employeeManager'
 import depotManager from '@/managers/depotManager'
 import staticView from '@/managers/staticView'
+import editManInfo from '@/managers/editManInfo'
 import adminSystem from '@/administrator/adminSystem'
 import editManagers from '@/administrator/editManagers'
 import quickActions from '@/administrator/quickActions'
@@ -44,6 +45,11 @@ export default new Router({
         path: '/manageSystem/staticView',
         name: 'staticView',
         component: staticView
+      },
+      {
+        path: '/manageSystem/editManInfo',
+        name: 'editManInfo',
+        component: editManInfo
       }
     ]
     },

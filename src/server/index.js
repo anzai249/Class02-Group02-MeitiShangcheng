@@ -180,6 +180,23 @@ app.post('/removeMerchandise', function (req, res) {
     });
 })
 // END OF THE DEPOT PAGE //
+
+// BEGIN OF THE MANAGER INFO PAGE //
+// load Manger Information
+app.post('/loadMangerInformation', function (req, res) {
+    var id = req.query.userid
+    if(!id){
+        res.send('error00')
+        return
+    }
+    connection.query('SELECT * from managers where ID='+id, function (error, results, fields) {
+        if (error) throw error;
+        var info = results
+        res.send(info)
+    });
+})
+// END OF THE MANAGER INFO PAGE //
+
 // BEGIN OF THE CHECK PAGE //
 // get work shift
 app.post('/getWorkShift', function (req, res) {
