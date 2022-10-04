@@ -68,7 +68,8 @@ export default {
                 },
                 tooltip: {},
                 legend: {
-                    data: ['Amount']
+                    data: ['Amount'],
+                    top: 'bottom'
                 },
                 yAxis: {
                     type: 'category',
@@ -102,7 +103,8 @@ export default {
                         },
                         tooltip: {},
                         legend: {
-                            data: ['Amount']
+                            data: ['Amount'],
+                            top: 'bottom'
                         },
                         yAxis: {
                             type: 'category',
@@ -197,9 +199,13 @@ export default {
                 legend: {
                     top: 'bottom'
                 },
+                tooltip: {
+                    trigger: 'item',
+                    formatter: '{a} <br/>{b} : {c} ({d}%)'
+                },
                 series: [
                     {
-                        name: 'Brand',
+                        name: 'Gender',
                         type: 'pie',
                         radius: '60%',
                         data: [],
@@ -244,10 +250,6 @@ export default {
             var option4 = {
                 title: {
                     text: 'Remaining Merchandise'
-                },
-                tooltip: {
-                    trigger: 'item',
-                    formatter: '{a} <br/>{b} : {c} ({d}%)'
                 },
                 legend: {
                     data: ['Amount']
