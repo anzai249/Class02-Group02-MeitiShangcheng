@@ -10,6 +10,7 @@ import axios from 'axios'
 import serve from '@/service/api'
 import request from "@/service/request.js"
 import bodyParser from 'body-parser'
+import ECharts from 'echarts'
 
 //Vue.config.lang = 'en'
 Vue.use(ElementUI, {enLocale})
@@ -18,6 +19,7 @@ Vue.prototype.$bodyParser = bodyParser
 Vue.prototype.$request = request
 Vue.prototype.$http = axios
 Vue.prototype.$serve = serve
+Vue.prototype.$echarts = ECharts
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */

@@ -273,7 +273,40 @@ app.post('/loadManagerData', function (req, res) {
         res.send(info)
     });
 })
-// 
+// END OF THE ADMIN PAGE //
+// BEGIN OF THE STATIC PAGE //
+// count amount
+app.post('/countAmount', function (req, res) {
+    connection.query('SELECT MerchandiseType, sum(Amount) as Amount from depot group by MerchandiseType', function (error, results, fields) {
+        if (error) throw error;
+        var info = results
+        res.send(info)
+    });
+})
+// brand sales
+app.post('/brandSales', function (req, res) {
+    connection.query('SELECT MerchandiseName as name, sum(Sales) as value from depot group by MerchandiseType', function (error, results, fields) {
+        if (error) throw error;
+        var info = results
+        res.send(info)
+    });
+})
+// employee gender
+app.post('/employeeGender', function (req, res) {
+    connection.query('SELECT Count(Name) as value, Gender as name from employees group by Gender', function (error, results, fields) {
+        if (error) throw error;
+        var info = results
+        res.send(info)
+    });
+})
+// work shift chart
+app.post('/workShiftChart', function (req, res) {
+    connection.query('SELECT Count(Name) as value, WorkShift as name from employees group by WorkShift', function (error, results, fields) {
+        if (error) throw error;
+        var info = results
+        res.send(info)
+    });
+})
 app.listen('8090', () => {
     console.log('Listening port 8090')
 })

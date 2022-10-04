@@ -16,7 +16,7 @@
             </el-col>
             <el-col :span="6">
                 <div class="grid-content bg-purple">
-                    <el-button type="primary" plain>TestButton</el-button>
+                    <el-button type="primary" plain>Reset Sales</el-button>
                 </div>
             </el-col>
             <el-col :span="6">

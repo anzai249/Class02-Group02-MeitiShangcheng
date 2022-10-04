@@ -91,10 +91,10 @@
                 return { Name, Email}
             },
             nameOnSubmit(name, email) {
-                // TODO
+                // TODO: name submit button
             },
             passOnSubmit(oldPass, newPass) {
-                // TODO
+                // TODO: pass submit button
             }
         }
     }
