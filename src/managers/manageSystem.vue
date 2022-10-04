@@ -14,7 +14,7 @@ body {
             <el-menu-item index="/manageSystem/depotManager">Depot Manager</el-menu-item>
             <el-menu-item index="/manageSystem/staticView">Static View</el-menu-item>
             <el-menu-item index="/manageSystem/editManInfo">Edit Information</el-menu-item>
-            <el-menu-item index="/"><a target="_self" style="text-decoration: none;" @click="logOut()">Log
+            <el-menu-item><a target="_self" style="text-decoration: none;" @click="logOut()">Log
                     out</a>
             </el-menu-item>
             <el-menu-item style="-webkit-app-region: drag;">&ensp;&ensp;<i class="el-icon-rank"></i>&ensp;&ensp;Hello,

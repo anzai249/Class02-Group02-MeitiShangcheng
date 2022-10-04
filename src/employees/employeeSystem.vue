@@ -13,7 +13,7 @@ body {
             <el-menu-item index="/employeeSystem/attendanceCheck">Attendance Check</el-menu-item>
             <!-- <el-menu-item index="/employeeSystem/sellingSystem">Selling System</el-menu-item> -->
             <el-menu-item index="/employeeSystem/editInformation">Edit Information</el-menu-item>
-            <el-menu-item index="/"><a target="_self" style="text-decoration: none;" @click="logOut()">Log
+            <el-menu-item><a target="_self" style="text-decoration: none;" @click="logOut()">Log
                     out</a>
             </el-menu-item>
             <el-menu-item style="-webkit-app-region: drag;">&ensp;&ensp;<i class="el-icon-rank"></i>&ensp;&ensp;Hello,
