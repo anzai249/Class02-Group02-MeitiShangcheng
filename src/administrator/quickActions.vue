@@ -11,7 +11,7 @@
         <el-row :gutter="20">
             <el-col :span="6">
                 <div class="grid-content bg-purple">
-                    <el-button type="primary" plain>TestButton</el-button>
+                    <el-button type="primary" plain>Reset Attendance</el-button>
                 </div>
             </el-col>
             <el-col :span="6">

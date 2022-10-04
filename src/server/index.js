@@ -231,6 +231,8 @@ app.post('/getCheckStatus', function (req, res) {
         res.send(info)
     });
 })
+// END OF THE CHECK PAGE //
+// BEGIN OF THE EDIT PAGE //
 // load employee Info
 app.post('/loadInformation', function (req, res) {
     var id = req.query.userid
@@ -245,6 +247,17 @@ app.post('/loadInformation', function (req, res) {
         res.send(info)
     });
 })
+// END OF THE EDIT PAGE //
+// BEGIN OF THE ADMIN PAGE //
+// load managers
+app.post('/loadManagerData', function (req, res) {
+    connection.query('SELECT * from managers', function (error, results, fields) {
+        if (error) throw error;
+        var info = results
+        res.send(info)
+    });
+})
+// 
 app.listen('8090', () => {
     console.log('Listening port 8090')
 })
