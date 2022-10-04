@@ -243,7 +243,6 @@ app.post('/loadInformation', function (req, res) {
     connection.query('SELECT * from employees where ID='+id, function (error, results, fields) {
         if (error) throw error;
         var info = results
-        console.log(info)
         res.send(info)
     });
 })
