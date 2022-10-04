@@ -62,7 +62,6 @@
                 editPass: {
     
                 },
-                salary
             };
         },
         methods: {
