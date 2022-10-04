@@ -83,8 +83,8 @@ h1 {
               </el-select>
             </el-form-item>
             <el-form-item>
-              <el-button type="primary" @click="onSubmit(form.id, form.pswd, form.position)">Login</el-button>
-              <el-button type="warning" @click="resetForm()">Clear</el-button>
+              <el-button type="primary" @click="onSubmit(form.id, form.pswd, form.position)" icon="el-icon-check">Login</el-button>
+              <el-button type="warning" @click="resetForm()" icon="el-icon-close">Clear</el-button>
             </el-form-item>
           </el-form>
         </div>
