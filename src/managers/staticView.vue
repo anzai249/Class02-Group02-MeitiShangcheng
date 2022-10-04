@@ -6,6 +6,7 @@
     height: 93%;
     width: 99.5%;
     margin: 0 auto;
+    border-radius: 10px;
 }
 
 .grid-content {

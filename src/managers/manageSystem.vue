@@ -42,6 +42,8 @@ export default {
         logOut() {
             if (confirm("Log out?")) {
                 this.$router.push('/')
+            }else{
+                return;
             }
         }
     }
