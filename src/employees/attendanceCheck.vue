@@ -21,7 +21,7 @@ body {
         <h1>-Your Work Shift-</h1><br />
         <h2>{{currentWorkShift[0]}}</h2>
         <input type="button" value="Check" id="btn" @click="checkIt(userid)">
-        <h2>Status: {{currentStatus}}</h2>
+        <h2>Status: {{currentStatus[0]}}</h2>
     </div>
 </template>
 <script>
@@ -72,7 +72,7 @@ export default {
             })
             return Status
         },
-        checkIt(userid){
+        checkIt(userid) {
             this.$request({
                 url: "/checkIt",
                 params: { userid },
@@ -83,6 +83,7 @@ export default {
                     WorkShift.push(
                         info[0].WorkShift,
                     )
+                    alert('Request sent!');
                     return WorkShift
                 } else if (info === 'error00') {
                     alert('Please login again!');
@@ -101,11 +102,12 @@ export default {
     data() {
         var a = this.loadWorkShift(this.userid)
         var b = this.getCheckStatus(this.userid)
-        if(b[0] === "none" || b[0] === "error"){
-            b = "No"
-        }else{
-            b = "Yes"
-        }
+        console.log(b)
+        // if (b[0] === "None" || b[0] === "error" || b[0] === "none") {
+        //     c = "No"
+        // } else {
+        //     c = "Yes"
+        // }
         return {
             newUserid: null,
             currentWorkShift: a,
