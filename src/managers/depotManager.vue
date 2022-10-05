@@ -9,10 +9,8 @@
     <div class="employeeMan">
         <el-button type="success" style="float:left;" @click="addElement()" icon="el-icon-plus">Add</el-button>
         <!-- <el-button type="primary" style="float:left;" onclick="javascript:location.reload()" -->
-        <el-button type="primary" style="float:left;" @click="reload()"
-            icon="el-icon-refresh-right">Refresh</el-button>
-        <el-table v-loading="loading" max-height="490" :data='tableData' border :key="num"
-            style="width: 100%;">
+        <el-button type="primary" style="float:left;" @click="reload()" icon="el-icon-refresh-right">Refresh</el-button>
+        <el-table v-loading="loading" max-height="490" :data='tableData' border :key="num" style="width: 100%;">
             <el-table-column sortable fixed prop="id" label="ID" width="100">
             </el-table-column>
             <el-table-column :filters="[{text: 'Desktop', value: 'Desktop'}, 
@@ -110,7 +108,6 @@ export default {
         loadData() {
             this.loading = true;
             let tableDataInfo = new Array();
-            // let total = 0;
             var i = 0;
             this.$request({
                 url: "/loadDepotData",
@@ -197,7 +194,7 @@ export default {
                 alert(info);
             })
         },
-        editMerchandise(id,name, type, price, amount) {
+        editMerchandise(id, name, type, price, amount) {
             if (!name || !type || !price || !amount) {
                 // 判断是否输入完全
                 alert('Please fill all of the information')
@@ -214,7 +211,7 @@ export default {
             })
             this.editFormVisible = false
         },
-        reload(){
+        reload() {
             this.tableData = this.loadData();
             this.num++;
             return this.tableData;
@@ -238,9 +235,6 @@ export default {
             amount: null,
             formLabelWidth: '120px',
             addForm: {
-                name: '',
-                gender: '',
-                position: '',
             },
             editForm: {
             }
