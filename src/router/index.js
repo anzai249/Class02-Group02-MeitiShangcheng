@@ -5,6 +5,7 @@ import manageSystem from '@/managers/manageSystem'
 import employeeSystem from '@/employees/employeeSystem'
 import attendanceCheck from '@/employees/attendanceCheck'
 import editInformation from '@/employees/editInformation'
+import sellingSystem from '@/employees/sellingSystem'
 import employeeManager from '@/managers/employeeManager'
 import depotManager from '@/managers/depotManager'
 import staticView from '@/managers/staticView'
@@ -66,6 +67,11 @@ export default new Router({
         path: '/employeeSystem/editInformation',
         name: 'editInformation',
         component: editInformation
+      },
+      {
+        path: '/employeeSystem/sellingSystem',
+        name: 'sellingSystem',
+        component: sellingSystem
       }
     ]
     },
