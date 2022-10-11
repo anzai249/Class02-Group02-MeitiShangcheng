@@ -179,6 +179,18 @@ app.post('/removeMerchandise', function (req, res) {
         res.send('Success.')
     });
 })
+
+// sell Merchandise
+app.post('/sellMerchandise', function (req, res) {
+    var id = req.query.id
+    var amount = req.query.amount
+    connection.query('update depot set Amount=Amount-'+amount+' where MerchandiseID='+id, function (error, results, fields) {
+        if (error) throw error;
+        //result.data = results
+        //res.json(result)
+        res.send('Success.')
+    });
+}) 
 // END OF THE DEPOT PAGE //
 
 // BEGIN OF THE MANAGER INFO PAGE //
