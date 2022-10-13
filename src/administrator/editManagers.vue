@@ -141,35 +141,32 @@ export default {
         addElement() {
             this.addFormVisible = true
         },
-        addNewManager(name, type, email) {
-            if (!name || !type || !email) {
-                // 判断是否输入完全
+        addNewManager(name, email) {
+            if (!name || !email) {
                 alert('Please fill all of the information')
                 return;
             }
             this.addFormVisible = false
             this.$request({
                 url: "/addManager",
-                params: { name, type, email },
+                params: { name, email },
                 method: "post"
             }).then(res => {
-                //alert(res.data);
                 var info = res.data;
                 alert(info);
             })
         },
-        editManager(id, name, type, email) {
-            if (!name || !type || !email) {
+        editManager(id, name, email) {
+            if (!name || !email) {
                 // 判断是否输入完全
                 alert('Please fill all of the information')
                 return;
             }
             this.$request({
                 url: "/editManager",
-                params: { id, name, type, email },
+                params: { id, name, email },
                 method: "post"
             }).then(res => {
-                //alert(res.data);
                 var info = res.data;
                 alert(info);
             })

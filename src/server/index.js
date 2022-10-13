@@ -98,7 +98,7 @@ app.post('/addEmployee', function (req, res) {
 })
 app.post('/resetEmployeePassword', function (req, res) {
     var id = req.query.id
-    connection.query('update employees set Password=? where id='+id, ['123456'], function (error, results, fields) {
+    connection.query('update employees set Password=? where id=' + id, ['123456'], function (error, results, fields) {
         if (error) throw error;
         // result.data = results
         // res.json(result)
@@ -115,7 +115,7 @@ app.post('/editEmployee', function (req, res) {
     var workshift = req.query.workshift
     var salary = req.query.salary
     var department = req.query.department
-    connection.query('update employees set Name=?,Gender=?,Age=?,Email=?,Address=?,Workshift=?,Salary=?,Department=? where id='+id, [name, gender, age, email, address, workshift, salary, department], function (error, results, fields) {
+    connection.query('update employees set Name=?,Gender=?,Age=?,Email=?,Address=?,Workshift=?,Salary=?,Department=? where id=' + id, [name, gender, age, email, address, workshift, salary, department], function (error, results, fields) {
         if (error) throw error;
         // result.data = results
         // res.json(result)
@@ -124,7 +124,7 @@ app.post('/editEmployee', function (req, res) {
 })
 app.post('/removeEmployee', function (req, res) {
     var id = req.query.id
-    connection.query('delete from employees where ID='+id, function (error, results, fields) {
+    connection.query('delete from employees where ID=' + id, function (error, results, fields) {
         if (error) throw error;
         //result.data = results
         //res.json(result)
@@ -162,7 +162,7 @@ app.post('/editMerchandise', function (req, res) {
     var type = req.query.type
     var price = req.query.price
     var amount = req.query.amount
-    connection.query('update depot set MerchandiseName=?,MerchandiseType=?,Price=?,Amount=? where MerchandiseID='+id, [name, type, price, amount], function (error, results, fields) {
+    connection.query('update depot set MerchandiseName=?,MerchandiseType=?,Price=?,Amount=? where MerchandiseID=' + id, [name, type, price, amount], function (error, results, fields) {
         if (error) throw error;
         // result.data = results
         // res.json(result)
@@ -172,7 +172,7 @@ app.post('/editMerchandise', function (req, res) {
 // delete Merchandise
 app.post('/removeMerchandise', function (req, res) {
     var id = req.query.id
-    connection.query('delete from depot where MerchandiseID='+id, function (error, results, fields) {
+    connection.query('delete from depot where MerchandiseID=' + id, function (error, results, fields) {
         if (error) throw error;
         //result.data = results
         //res.json(result)
@@ -184,24 +184,24 @@ app.post('/removeMerchandise', function (req, res) {
 app.post('/sellMerchandise', function (req, res) {
     var id = req.query.id
     var amount = req.query.amount
-    connection.query('update depot set Amount=Amount-'+amount+' where MerchandiseID='+id, function (error, results, fields) {
+    connection.query('update depot set Amount=Amount-' + amount + ' where MerchandiseID=' + id, function (error, results, fields) {
         if (error) throw error;
         //result.data = results
         //res.json(result)
         res.send('Success.')
     });
-}) 
+})
 // END OF THE DEPOT PAGE //
 
 // BEGIN OF THE MANAGER INFO PAGE //
 // load Manger Information
 app.post('/loadMangerInformation', function (req, res) {
     var id = req.query.userid
-    if(!id){
+    if (!id) {
         res.send('error00')
         return
     }
-    connection.query('SELECT * from managers where ID='+id, function (error, results, fields) {
+    connection.query('SELECT * from managers where ID=' + id, function (error, results, fields) {
         if (error) throw error;
         var info = results
         res.send(info)
@@ -213,11 +213,11 @@ app.post('/loadMangerInformation', function (req, res) {
 // get work shift
 app.post('/getWorkShift', function (req, res) {
     var id = req.query.userid
-    if(!id){
+    if (!id) {
         res.send('error00')
         return
     }
-    connection.query('SELECT WorkShift from employees where ID='+id, function (error, results, fields) {
+    connection.query('SELECT WorkShift from employees where ID=' + id, function (error, results, fields) {
         if (error) throw error;
         var info = results
         res.send(info)
@@ -227,22 +227,22 @@ app.post('/getWorkShift', function (req, res) {
 app.post('/checkIt', function (req, res) {
     var id = req.query.userid
     var checkedShift = "error"
-    if(!id){
+    if (!id) {
         res.send('error00')
         return
     }
     var d = new Date();
-    var hour= d.getHours();
-    if(hour>4&&hour<=12){
+    var hour = d.getHours();
+    if (hour > 4 && hour <= 12) {
         checkedShift = "Morning"
-    }else if(hour>12&&hour<=20){
+    } else if (hour > 12 && hour <= 20) {
         checkedShift = "Afternoon"
-    }else if(hour>20||hour<=4){
+    } else if (hour > 20 || hour <= 4) {
         checkedShift = "Evening"
-    }else{
+    } else {
         checkedShift = "error"
     }
-    connection.query('update employees set Attendance=? where ID='+id, [checkedShift], function (error, results, fields) {
+    connection.query('update employees set Attendance=? where ID=' + id, [checkedShift], function (error, results, fields) {
         if (error) throw error;
         res.send('Success.')
     });
@@ -250,11 +250,11 @@ app.post('/checkIt', function (req, res) {
 // get check status
 app.post('/getCheckStatus', function (req, res) {
     var id = req.query.userid
-    if(!id){
+    if (!id) {
         res.send('error00')
         return
     }
-    connection.query('SELECT Attendance from employees where ID='+id, function (error, results, fields) {
+    connection.query('SELECT Attendance from employees where ID=' + id, function (error, results, fields) {
         if (error) throw error;
         var info = results
         res.send(info)
@@ -265,11 +265,11 @@ app.post('/getCheckStatus', function (req, res) {
 // load employee Info
 app.post('/loadInformation', function (req, res) {
     var id = req.query.userid
-    if(!id){
+    if (!id) {
         res.send('error00')
         return
     }
-    connection.query('SELECT * from employees where ID='+id, function (error, results, fields) {
+    connection.query('SELECT * from employees where ID=' + id, function (error, results, fields) {
         if (error) throw error;
         var info = results
         res.send(info)
@@ -283,6 +283,33 @@ app.post('/loadManagerData', function (req, res) {
         if (error) throw error;
         var info = results
         res.send(info)
+    });
+})
+// add manager
+app.post('/addManager', function (req, res) {
+    var name = req.query.name
+    var email = req.query.email
+    connection.query('INSERT INTO managers(Name,Email)VALUES(?,?)', [name, email], function (error, results, fields) {
+        if (error) throw error;
+        res.send('Success.')
+    });
+})
+// edit manager
+app.post('/editManager', function (req, res) {
+    var id = req.query.id
+    var name = req.query.name
+    var email = req.query.email
+    connection.query('update managers set Name=?,Email=? where ID=' + id, [name, email], function (error, results, fields) {
+        if (error) throw error;
+        res.send('Success.')
+    });
+})
+// delete manager
+app.post('/removeManager', function (req, res) {
+    var id = req.query.id
+    connection.query('delete from managers where ID=' + id, function (error, results, fields) {
+        if (error) throw error;
+        res.send('Success.')
     });
 })
 // END OF THE ADMIN PAGE //
