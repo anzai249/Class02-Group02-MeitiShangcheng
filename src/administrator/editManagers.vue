@@ -8,7 +8,6 @@
 <template>
     <div class="employeeMan">
         <el-button type="success" style="float:left;" @click="addElement()" icon="el-icon-plus">Add</el-button>
-        <!-- <el-button type="primary" style="float:left;" onclick="javascript:location.reload()" -->
         <el-button type="primary" style="float:left;" @click="reload()" icon="el-icon-refresh-right">Refresh</el-button>
         <el-table v-loading="loading" max-height="490" :data='tableData' border :key="num" style="width: 100%;">
             <el-table-column sortable fixed prop="id" label="ID" width="100">
