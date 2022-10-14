@@ -32,7 +32,7 @@
             </el-table-column>
             <el-table-column fixed="right" label="Action" width="100">
                 <template slot-scope="scope">
-                    <el-button @click="sellClick(scope.row)" type="text" size="small">Edit</el-button>
+                    <el-button @click="sellClick(scope.row)" type="text" size="small">Sell</el-button>
                 </template>
             </el-table-column>
         </el-table>
@@ -47,9 +47,8 @@
                 </el-form-item>
             </el-form>
             <div slot="footer" class="dialog-footer">
-                <el-button @click="editFormVisible = false" plain>Cancel</el-button>
-                <el-button type="primary"
-                    @click="sellMerchandise(id,sellingForm.amount)" plain>
+                <el-button @click="sellingFormVisible = false" plain>Cancel</el-button>
+                <el-button type="primary" @click="sellMerchandise(id,sellingForm.amount)" plain>
                     Submit</el-button>
             </div>
         </el-dialog>
@@ -97,7 +96,7 @@ export default {
             this.type = row.type;
             this.price = row.price;
         },
-        sellMerchandise(id,amount) {
+        sellMerchandise(id, amount) {
             if (!id || !amount) {
                 // 判断是否输入完全
                 alert('Please fill all of the information')
@@ -127,7 +126,7 @@ export default {
     data() {
         var a = this.loadData()
         console.log(a)
-        num = 0
+        var num = 0
         return {
             tableData: a,
             sellingFormVisible: false,
