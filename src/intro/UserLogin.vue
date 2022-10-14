@@ -11,7 +11,7 @@ h1 {
 
 .box {
   width: 800px;
-  height: 400px;
+  height: 500px;
   /*width: 3px;*/
   /*height: 3px;*/
   position: absolute;
@@ -82,8 +82,25 @@ h1 {
                 <el-option label="Manager" value="manager"></el-option>
               </el-select>
             </el-form-item>
+            <el-row>
+              <el-col :span="15">
+                <el-form-item label="Vcode" prop="vcode" :rules="[
+                  { required: true, message: 'You must enter the vcode!' },
+                ]">
+                  <el-input v-model="form.vcode" placeholder="→"></el-input>
+                </el-form-item>
+              </el-col>
+              <el-col :span="5">
+                <validateCode ref="ref_validateCode" @change="changeCode" />
+              </el-col>
+            </el-row>
+
+
             <el-form-item>
-              <el-button type="primary" @click="onSubmit(form.id, form.pswd, form.position)" icon="el-icon-check">Login</el-button>
+              <el-button type="primary" @click="onSubmit(form.id, form.pswd, form.position, form.vcode)"
+                icon="el-icon-check">
+                Login
+              </el-button>
               <el-button type="warning" @click="resetForm()" icon="el-icon-close">Clear</el-button>
             </el-form-item>
           </el-form>
@@ -96,10 +113,12 @@ h1 {
 </template>
 
 <script>
-
+import validateCode from "@/components/ValidateCode"
 export default {
   data() {
     return {
+      isShow: false,
+      checkCode: "",
       form: {
         id: '',
         pswd: '',
@@ -107,70 +126,72 @@ export default {
       }
     }
   },
+  components: {
+    validateCode
+  },
   methods: {
-    onSubmit(id, pswd, position) {
-      if (!id || !pswd || !position) {
+    changeCode(value) {
+      this.checkCode = value;
+      console.log(this.checkCode)
+    },
+
+    onSubmit(id, pswd, position, vcode) {
+      if (!id || !pswd || !position || !vcode) {
         // 判断是否输入完全
         alert('Please fill all of the information')
         return;
       }
-      this.$request({
-        url: "/login",
-        params: { id, pswd, position },
-        method: "post"
-      }).then(res => {
-        //alert(res.data);
-        var info = res.data;
-        switch (info) {
-          case "Err00":
-            alert('ID or password error.');
-            break;
-          case "Err01":
-            alert('ID error.');
-            break;
-          default:
-            if (position === 'manager') {
-              if (info.ID === 1) {
-                this.$router.push({
-                  path: '/adminSystem',
-                  name: "adminSystem",
-                  params: {
-                    id: info.ID,
-                    name: info.Name
-                  }
-                })
+      if (vcode === this.checkCode) {
+        this.$request({
+          url: "/login",
+          params: { id, pswd, position, vcode },
+          method: "post"
+        }).then(res => {
+          //alert(res.data);
+          var info = res.data;
+          switch (info) {
+            case "Err00":
+              alert('ID or password error.');
+              break;
+            case "Err01":
+              alert('ID error.');
+              break;
+            default:
+              if (position === 'manager') {
+                if (info.ID === 1) {
+                  this.$router.push({
+                    path: '/adminSystem',
+                    name: "adminSystem",
+                    params: {
+                      id: info.ID,
+                      name: info.Name
+                    }
+                  })
+                } else {
+                  this.$router.push({
+                    path: '/manageSystem',
+                    name: "manageSystem",
+                    params: {
+                      id: info.ID,
+                      name: info.Name
+                    }
+                  })
+                }
               } else {
                 this.$router.push({
-                  path: '/manageSystem',
-                  name: "manageSystem",
+                  path: '/employeeSystem',
+                  name: "employeeSystem",
                   params: {
                     id: info.ID,
                     name: info.Name
                   }
                 })
               }
-            } else {
-              this.$router.push({
-                path: '/employeeSystem',
-                name: "employeeSystem",
-                params: {
-                  id: info.ID,
-                  name: info.Name
-                }
-              })
-            }
-        }
-        // if (info == "Err00") {
-        //   alert('ID or password error.');
-        // } else if (info == "Err01") {
-        //   alert('ID error.');
-        // }else{
-        //   alert(typeof(info));
-        // }
-        //alert(typeof(info));
-
-
-      })
+          }
+        })
+      }else{
+        alert('Wrong validate code!')
+      }
     },
     resetForm() {
       this.form.id = '',

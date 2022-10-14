@@ -17,9 +17,10 @@ import ElementUI from 'element-ui'
 import enLocale from 'element-ui/lib/locale/lang/en'
 import 'element-ui/lib/theme-chalk/index.css'
 import serve from '@/service/api'
+
 Vue.prototype.$serve = serve
 Vue.use(Router)
-Vue.use(ElementUI,{enLocale})
+Vue.use(ElementUI, { enLocale })
 
 export default new Router({
   routes: [
@@ -52,7 +53,7 @@ export default new Router({
         name: 'editManInfo',
         component: editManInfo
       }
-    ]
+      ]
     },
     {
       path: '/employeeSystem',
@@ -73,7 +74,7 @@ export default new Router({
         name: 'sellingSystem',
         component: sellingSystem
       }
-    ]
+      ]
     },
     {
       path: '/adminSystem',
@@ -89,7 +90,7 @@ export default new Router({
         name: 'quickActions',
         component: quickActions
       }
-    ]
+      ]
     }
   ]
 })

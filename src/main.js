@@ -11,10 +11,10 @@ import serve from '@/service/api'
 import request from "@/service/request.js"
 import bodyParser from 'body-parser'
 import ECharts from 'echarts'
-
+import validateCode from "@/components/ValidateCode"
 //Vue.config.lang = 'en'
-Vue.use(ElementUI, {enLocale})
-//Vue.locale('en', enLocale)
+Vue.use(ElementUI, { enLocale })
+Vue.use(validateCode)
 Vue.prototype.$bodyParser = bodyParser
 Vue.prototype.$request = request
 Vue.prototype.$http = axios
@@ -26,6 +26,6 @@ Vue.config.productionTip = false
 new Vue({
   el: '#app',
   router,
-  components: { App },
+  components: { App, validateCode },
   template: '<App/>'
 })
