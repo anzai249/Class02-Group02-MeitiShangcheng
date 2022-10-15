@@ -94,8 +94,6 @@ h1 {
                 <validateCode ref="ref_validateCode" @change="changeCode" />
               </el-col>
             </el-row>
-
-
             <el-form-item>
               <el-button type="primary" @click="onSubmit(form.id, form.pswd, form.position, form.vcode)"
                 icon="el-icon-check">
@@ -141,7 +139,7 @@ export default {
         alert('Please fill all of the information')
         return;
       }
-      if (vcode === this.checkCode) {
+      if (vcode.toUpperCase === this.checkCode.toUpperCase) {
         this.$request({
           url: "/login",
           params: { id, pswd, position, vcode },
