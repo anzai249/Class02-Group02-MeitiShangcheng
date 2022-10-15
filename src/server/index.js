@@ -312,6 +312,13 @@ app.post('/removeManager', function (req, res) {
         res.send('Success.')
     });
 })
+// reset attendance
+app.post('/resetAttendance', function (req, res) {
+    connection.query('update employees set Attendance=?', ['none'], function (error, results, fields) {
+        if (error) throw error;
+        res.send('Success.')
+    });
+})
 // END OF THE ADMIN PAGE //
 // BEGIN OF THE STATIC PAGE //
 // count amount
