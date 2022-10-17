@@ -52,7 +52,7 @@
             </span>
         </el-dialog>
         <!--Add New Merchandise-->
-        <el-dialog title="Add" :visible.sync="addFormVisible">
+        <el-dialog title="Add Merchandise" :visible.sync="addFormVisible">
             <el-form :model="addForm">
                 <el-form-item label="Merchandise Name" :label-width="formLabelWidth">
                     <el-input v-model="addForm.name" autocomplete="off"></el-input>
@@ -75,7 +75,7 @@
             </div>
         </el-dialog>
         <!--Edit-->
-        <el-dialog title="Edit" :visible.sync="editFormVisible">
+        <el-dialog title="Edit Merchandise" :visible.sync="editFormVisible">
             <el-form :model="editForm">
                 <span>You are editing ID: {{id}}</span><br />
                 <el-form-item label="Merchandise Name" :label-width="formLabelWidth">

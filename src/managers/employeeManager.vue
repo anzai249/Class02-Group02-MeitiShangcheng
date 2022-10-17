@@ -66,7 +66,7 @@
             </span>
         </el-dialog>
         <!--Add New Employee-->
-        <el-dialog title="Add" :visible.sync="addFormVisible">
+        <el-dialog title="Add Employee" :visible.sync="addFormVisible">
             <el-form :model="addForm">
 
                 <el-form-item label="Name" :label-width="formLabelWidth">
@@ -108,7 +108,7 @@
             </div>
         </el-dialog>
         <!--Edit-->
-        <el-dialog title="Edit" :visible.sync="editFormVisible">
+        <el-dialog title="Edit Employee" :visible.sync="editFormVisible">
             <el-form :model="editForm">
                 <span>You are editing ID: {{id}}</span><br />
                 <el-form-item label="Name" :label-width="formLabelWidth">
