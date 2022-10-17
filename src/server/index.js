@@ -184,7 +184,7 @@ app.post('/removeMerchandise', function (req, res) {
 app.post('/sellMerchandise', function (req, res) {
     var id = req.query.id
     var amount = req.query.amount
-    connection.query('update depot set Amount=Amount-' + amount + ' where MerchandiseID=' + id, function (error, results, fields) {
+    connection.query('update depot set Amount=Amount-' + amount + ' , Sales=Sales+' + amount + ' where MerchandiseID=' + id, function (error, results, fields) {
         if (error) throw error;
         //result.data = results
         //res.json(result)
