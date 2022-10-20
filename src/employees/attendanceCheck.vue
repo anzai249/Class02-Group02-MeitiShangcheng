@@ -79,6 +79,7 @@ export default {
                 method: "post"
             }).then(res => {
                 var info = res.data;
+                alert('Request sent!');
                 if (info != 'undefined') {
                     WorkShift.push(
                         info[0].WorkShift,

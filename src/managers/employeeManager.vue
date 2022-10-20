@@ -9,8 +9,7 @@
     <div class="employeeMan">
         <el-button type="success" style="float:left;" @click="addElement()" icon="el-icon-plus">Add</el-button>
         <!-- <el-button type="primary" style="float:left;" onclick="javascript:location.reload()" -->
-        <el-button type="primary" style="float:left;" @click="reload()"
-            icon="el-icon-refresh-right">Refresh</el-button>
+        <el-button type="primary" style="float:left;" @click="reload()" icon="el-icon-refresh-right">Refresh</el-button>
         <el-table v-loading="loading" max-height="490" :data='tableData' border :key="num" style="width: 100%;">
             <el-table-column sortable fixed prop="id" label="ID" width="100">
             </el-table-column>
@@ -72,10 +71,13 @@
                 <el-form-item label="Name" :label-width="formLabelWidth">
                     <el-input v-model="addForm.name" autocomplete="off"></el-input>
                 </el-form-item>
-                <el-form-item label="Age" :label-width="formLabelWidth">
-                    <el-input v-model="addForm.age" autocomplete="off"></el-input>
+                <el-form-item label="Birthdate" :label-width="formLabelWidth">
+                    <el-date-picker type="date" placeholder="Birthdate" v-model="addForm.age" autocomplete="off"
+                        style="width:100%" value-format="yyyy-MM-dd"></el-date-picker>
                 </el-form-item>
-                <el-form-item label="Email" :label-width="formLabelWidth">
+                <el-form-item label="Email" :label-width="formLabelWidth" :rules="[
+                  { type: 'email', message: 'Email not valid!', trigger: ['blur', 'change'] }
+                ]">
                     <el-input v-model="addForm.email" autocomplete="off"></el-input>
                 </el-form-item>
                 <el-form-item label="Department" :label-width="formLabelWidth">
@@ -114,10 +116,14 @@
                 <el-form-item label="Name" :label-width="formLabelWidth">
                     <el-input v-model="editForm.name" autocomplete="off"></el-input>
                 </el-form-item>
-                <el-form-item label="Age" :label-width="formLabelWidth">
-                    <el-input v-model="editForm.age" autocomplete="off"></el-input>
+                <el-form-item label="Birthdate" :label-width="formLabelWidth">
+                    <el-date-picker type="date" placeholder="Birthdate" v-model="editForm.age" style="width: 100%;"
+                        value-format="yyyy-MM-dd">
+                    </el-date-picker>
                 </el-form-item>
-                <el-form-item label="Email" :label-width="formLabelWidth">
+                <el-form-item label="Email" :label-width="formLabelWidth" :rules="[
+                  { type: 'email', message: 'Email not valid!', trigger: ['blur', 'change'] }
+                ]">
                     <el-input v-model="editForm.email" autocomplete="off"></el-input>
                 </el-form-item>
                 <el-form-item label="Department" :label-width="formLabelWidth">
@@ -170,12 +176,14 @@ export default {
                     for (i = 0; i < info.length; i++) {
                         var workshift = info[i].WorkShift
                         var attendance = info[i].Attendance
+                        var age = info[i].Age
+                        console.log(Date.parse(age))
                         tableDataInfo.push(
                             {
                                 id: info[i].ID,
                                 name: info[i].Name,
                                 gender: info[i].Gender,
-                                age: info[i].Age,
+                                age: Math.ceil((this.nowTime-Date.parse(age))/31536000000),
                                 email: info[i].Email,
                                 workshift: info[i].WorkShift,
                                 attendance: info[i].Attendance,
@@ -302,7 +310,7 @@ export default {
             })
             this.editFormVisible = false
         },
-        reload(){
+        reload() {
             this.tableData = this.loadData();
             this.num++;
             return this.tableData;
@@ -313,6 +321,7 @@ export default {
         var a = this.loadData()
         var num = 0;
         return {
+            nowTime: new Date().getTime(),
             num: num,
             tableData: a,
             dialogVisible: false,

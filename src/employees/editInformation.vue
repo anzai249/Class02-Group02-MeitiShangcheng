@@ -24,15 +24,17 @@ body {
                 <el-input v-model="editName.name" placeholder="Your New Name"></el-input>
             </el-form-item>
             <el-form-item label="Gender" id="whiteLabel">
-                <el-select v-model="editName.gender" placeholder="Do not change">
+                <el-select v-model="editName.gender" :value="editName.gender" placeholder="Do not change">
                     <el-option label="Male" value="male"></el-option>
                     <el-option label="Female" value="famale"></el-option>
                     <el-option label="Other" value="other"></el-option>
                 </el-select>
             </el-form-item>
-            <el-form-item label="Age" id="whiteLabel">
-                <el-input v-model="editName.age" placeholder="Your New Age"></el-input>
-            </el-form-item>
+            <el-form-item label="Birthdate">
+                    <el-date-picker type="date" placeholder="Birthdate" v-model="editName.age[0]"
+                        value-format="yyyy-MM-dd">
+                    </el-date-picker>
+                </el-form-item>
             <el-form-item label="Email" id="whiteLabel">
                 <el-input v-model="editName.email" placeholder="Your New Email"></el-input>
             </el-form-item>
