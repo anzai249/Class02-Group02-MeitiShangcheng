@@ -16,7 +16,6 @@
     </style>
     <template>
         <div class="editInfo">
-            <h1>TODO：后端还没写</h1>
             <h2>Your ID is {{userid}}</h2>
             <hr />
             <el-form :inline="true" :model="editName" class="edit-name">

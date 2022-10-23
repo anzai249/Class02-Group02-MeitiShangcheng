@@ -31,10 +31,9 @@ body {
                 </el-select>
             </el-form-item>
             <el-form-item label="Birthdate">
-                    <el-date-picker type="date" placeholder="Birthdate" v-model="editName.age[0]"
-                        value-format="yyyy-MM-dd">
-                    </el-date-picker>
-                </el-form-item>
+                <el-date-picker type="date" placeholder="Birthdate" v-model="editName.age[0]" value-format="yyyy-MM-dd">
+                </el-date-picker>
+            </el-form-item>
             <el-form-item label="Email" id="whiteLabel">
                 <el-input v-model="editName.email" placeholder="Your New Email"></el-input>
             </el-form-item>
@@ -42,7 +41,9 @@ body {
                 <el-input v-model="editName.address" placeholder="Your New Address"></el-input>
             </el-form-item>
             <el-form-item>
-                <el-button type="primary" @click="nameOnSubmit(editName.name,editName.gender)">Submit</el-button>
+                <el-button type="primary"
+                    @click="nameOnSubmit(userid,editName.name,editName.gender,editName.age,editName.email,editName.address)">
+                    Submit</el-button>
             </el-form-item>
         </el-form>
         <hr />
@@ -54,7 +55,8 @@ body {
                 <el-input v-model="editPass.new" placeholder="Your New Password" show-password></el-input>
             </el-form-item>
             <el-form-item>
-                <el-button type="primary" @click="passOnSubmit(editPass.old,editPass.new)">Submit</el-button>
+                <el-button type="primary" @click="passOnSubmit(userid,editPass.old,editPass.new)">Submit
+                </el-button>
             </el-form-item>
         </el-form>
         <h4>Your hour salary: {{salary[0]}}</h4>
@@ -129,11 +131,35 @@ export default {
             })
             return { Name, Gender, Age, Email, Address, Salary }
         },
-        nameOnSubmit(name, gender) {
-
+        nameOnSubmit(id, name, gender, age, email, address) {
+            if (!id || !name || !gender || !age || !email || !address) {
+                // 判断是否输入完全
+                alert('Please fill all of the information')
+                return;
+            }
+            this.$request({
+                url: "/editEmployeeInfo",
+                params: { id, name, gender, age, email, address },
+                method: "post"
+            }).then(res => {
+                var info = res.data;
+                alert(info);
+            })
         },
-        passOnSubmit(oldPass, newPass) {
-
+        passOnSubmit(id, oldPass, newPass) {
+            if (!id || !oldPass || !newPass) {
+                // 判断是否输入完全
+                alert('Please fill all of the information')
+                return;
+            }
+            this.$request({
+                url: "/editEmployeePass",
+                params: { id, oldPass, newPass },
+                method: "post"
+            }).then(res => {
+                var info = res.data;
+                alert(info);
+            })
         }
     }
 }
