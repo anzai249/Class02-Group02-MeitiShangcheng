@@ -207,6 +207,44 @@ app.post('/loadMangerInformation', function (req, res) {
         res.send(info)
     });
 })
+// edit Manager info
+app.post('/editManagerInfo', function (req, res) {
+    var id = req.query.id
+    var name = req.query.name
+    var email = req.query.email
+    if (!id) {
+        res.send('Please Login again!')
+        return
+    }
+    connection.query('update managers set Name=?,Email=? where id=' + id, [name, email], function (error, results, fields) {
+        if (error) throw error;
+        res.send('Success!')
+    });
+})
+// edit Manager pass
+app.post('/editManagerPass', function (req, res) {
+    var id = req.query.id
+    var oldPass = req.query.oldPass
+    var newPass = req.query.newPass
+    if (!id) {
+        res.send('Please Login again!')
+        return
+    }
+    connection.query('SELECT Password from managers where id=' + id, function (error, results, fields) {
+        if (error) throw error;
+        var info = results
+        if (oldPass === info[0].Password) {
+            connection.query('update managers set Password=? where id=' + id, [newPass], function (error, results, fields) {
+                if (error) throw error;
+                res.send('Success!')
+            });
+        } else {
+            res.send('Failed! Please check your input!')
+        }
+
+    });
+
+})
 // END OF THE MANAGER INFO PAGE //
 
 // BEGIN OF THE CHECK PAGE //
@@ -292,6 +330,7 @@ app.post('/editEmployeeInfo', function (req, res) {
         res.send('Success!')
     });
 })
+// edit employee pass
 app.post('/editEmployeePass', function (req, res) {
     var id = req.query.id
     var oldPass = req.query.oldPass
@@ -303,17 +342,17 @@ app.post('/editEmployeePass', function (req, res) {
     connection.query('SELECT Password from employees where id=' + id, function (error, results, fields) {
         if (error) throw error;
         var info = results
-        if(oldPass===info[0].Password){
+        if (oldPass === info[0].Password) {
             connection.query('update employees set Password=? where id=' + id, [newPass], function (error, results, fields) {
                 if (error) throw error;
                 res.send('Success!')
             });
-        }else{
+        } else {
             res.send('Failed! Please check your input!')
         }
-        
+
     });
-    
+
 })
 // END OF THE EDIT PAGE //
 // BEGIN OF THE ADMIN PAGE //

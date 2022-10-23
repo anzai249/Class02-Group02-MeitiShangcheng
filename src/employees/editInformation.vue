@@ -16,7 +16,6 @@ body {
 </style>
 <template>
     <div class="editInfo">
-        <h1>TODO：后端还没写</h1>
         <h2>Your ID is {{userid}}</h2>
         <hr />
         <el-form :inline="true" :model="editName" class="edit-name">
@@ -133,7 +132,6 @@ export default {
         },
         nameOnSubmit(id, name, gender, age, email, address) {
             if (!id || !name || !gender || !age || !email || !address) {
-                // 判断是否输入完全
                 alert('Please fill all of the information')
                 return;
             }
@@ -148,7 +146,6 @@ export default {
         },
         passOnSubmit(id, oldPass, newPass) {
             if (!id || !oldPass || !newPass) {
-                // 判断是否输入完全
                 alert('Please fill all of the information')
                 return;
             }
