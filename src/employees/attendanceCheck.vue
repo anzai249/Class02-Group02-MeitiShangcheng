@@ -21,7 +21,7 @@ body {
         <h1>-Your Work Shift-</h1><br />
         <h2>{{currentWorkShift[0]}}</h2>
         <input type="button" value="Check" id="btn" @click="checkIt(userid)">
-        <h2>Status: {{currentStatus[0]}}</h2>
+        <h2 :key="this.statuKey">Status: {{currentStatus[0]}}</h2>
     </div>
 </template>
 <script>
@@ -85,7 +85,9 @@ export default {
                         info[0].WorkShift,
                     )
                     alert('Request sent!');
-                    return WorkShift
+                    this.Status.value = getCheckStatus(this.userid);
+                    this.statuKey.value = new Date().getTime;
+                    return WorkShift, Status
                 } else if (info === 'error00') {
                     alert('Please login again!');
                 }
@@ -112,7 +114,8 @@ export default {
         return {
             newUserid: null,
             currentWorkShift: a,
-            currentStatus: b
+            currentStatus: b,
+            statuKey: 1
         }
     }
 }
