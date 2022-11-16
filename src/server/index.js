@@ -148,6 +148,14 @@ app.post('/loadEmployeeData', function (req, res) {
         res.send(info)
     });
 })
+// rollback the deletion 滚回XD
+app.post('/recycleEmployee', function (req, res) {
+    var id = req.query.id
+    connection.query('update employees set Deleted=0 where id=' + id, function (error, results, fields) {
+        if (error) throw error;
+        res.send('Success.')
+    });
+})
 // END OF THE EMPLOYEE PAGE //
 
 // BEGIN OF THE DEPOT PAGE //
