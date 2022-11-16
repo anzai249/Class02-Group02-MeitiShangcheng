@@ -73,7 +73,7 @@ app.post('/login', function (req, res) {
 // BEGIN OF THE EMPLOYEE PAGE //
 // loadEmployeeData
 app.post('/loadEmployeeData', function (req, res) {
-    connection.query('SELECT * from employees', function (error, results, fields) {
+    connection.query('SELECT * from employees where Deleted = 0', function (error, results, fields) {
         if (error) throw error;
         var info = results
         res.send(info)
@@ -122,6 +122,15 @@ app.post('/editEmployee', function (req, res) {
         res.send('Success.')
     });
 })
+// recycle
+app.post('/recycleEmployee', function (req, res) {
+    var id = req.query.id
+    connection.query('update employees set Deleted=1 where id=' + id, function (error, results, fields) {
+        if (error) throw error;
+        res.send('Success.')
+    });
+})
+// real delete
 app.post('/removeEmployee', function (req, res) {
     var id = req.query.id
     connection.query('delete from employees where ID=' + id, function (error, results, fields) {
@@ -129,6 +138,14 @@ app.post('/removeEmployee', function (req, res) {
         //result.data = results
         //res.json(result)
         res.send('Success.')
+    });
+})
+// select recycled employee
+app.post('/loadEmployeeData', function (req, res) {
+    connection.query('SELECT * from employees where Deleted = 1', function (error, results, fields) {
+        if (error) throw error;
+        var info = results
+        res.send(info)
     });
 })
 // END OF THE EMPLOYEE PAGE //
