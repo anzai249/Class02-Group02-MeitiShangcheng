@@ -35,7 +35,6 @@ app.post('/login', function (req, res) {
         connection.query('SELECT Password from managers where ID = ' + id, function (error, results, fields) {
             if (error) throw error;
             // result.data = results 回传会造成密码泄露
-            // res.json(result)
             if (typeof (results[0]) != 'undefined') {
                 if (results[0].Password == pswd) {
                     connection.query('SELECT * from managers where ID = ' + id, function (error, results, fields) {
@@ -58,7 +57,12 @@ app.post('/login', function (req, res) {
                 if (results[0].Password == pswd) {
                     connection.query('SELECT * from employees where ID = ' + id, function (error, results, fields) {
                         var info = results[0]
-                        res.send(info)
+                        console.log(info)
+                        if (info.Deleted === 0) {
+                            res.send(info)
+                        } else {
+                            res.send('Err02')
+                        }
                     })
                 } else {
                     res.send('Err00')
@@ -141,7 +145,7 @@ app.post('/removeEmployee', function (req, res) {
     });
 })
 // select recycled employee
-app.post('/loadEmployeeData', function (req, res) {
+app.post('/loadrecycledData', function (req, res) {
     connection.query('SELECT * from employees where Deleted = 1', function (error, results, fields) {
         if (error) throw error;
         var info = results
@@ -149,7 +153,7 @@ app.post('/loadEmployeeData', function (req, res) {
     });
 })
 // rollback the deletion 滚回XD
-app.post('/recycleEmployee', function (req, res) {
+app.post('/rollbackEmployee', function (req, res) {
     var id = req.query.id
     connection.query('update employees set Deleted=0 where id=' + id, function (error, results, fields) {
         if (error) throw error;

@@ -154,6 +154,9 @@ export default {
             case "Err01":
               alert('ID error.');
               break;
+            case "Err02":
+              alert('Your account is deactivated.');
+              break;
             default:
               if (position === 'manager') {
                 if (info.ID === 1) {

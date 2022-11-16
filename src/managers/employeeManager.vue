@@ -10,13 +10,14 @@
         <el-button type="success" style="float:left;" @click="addElement()" icon="el-icon-plus">Add</el-button>
         <!-- <el-button type="primary" style="float:left;" onclick="javascript:location.reload()" -->
         <el-button type="primary" style="float:left;" @click="reload()" icon="el-icon-refresh-right">Refresh</el-button>
+        <el-button type="info" style="float:left;" @click="recycleBin()" icon="el-icon-delete">Recycle Bin</el-button>
         <el-table v-loading="loading" max-height="490" :data='tableData' border :key="num" style="width: 100%;">
             <el-table-column sortable fixed prop="id" label="ID" width="100">
             </el-table-column>
             <el-table-column fixed prop="name" label="Name" width="120">
             </el-table-column>
             <el-table-column
-                :filters="[{text: 'male', value: 'male'}, {text: 'female', value: 'female'}, {text: 'other', value: 'other'}]"
+                :filters="[{ text: 'male', value: 'male' }, { text: 'female', value: 'female' }, { text: 'other', value: 'other' }]"
                 :filter-method="filterHandler" prop="gender" label="Gender" width="110">
             </el-table-column>
             <el-table-column sortable prop="age" label="Age" width="80">
@@ -24,16 +25,16 @@
             <el-table-column prop="email" label="Email" width="230">
             </el-table-column>
             <el-table-column
-                :filters="[{text: 'Sell', value: 'Sell'}, {text: 'Maintenance', value: 'Maintenance'}, {text: 'Depot', value: 'Depot'}, {text: 'Finance', value: 'Finance'}]"
+                :filters="[{ text: 'Sell', value: 'Sell' }, { text: 'Maintenance', value: 'Maintenance' }, { text: 'Depot', value: 'Depot' }, { text: 'Finance', value: 'Finance' }]"
                 :filter-method="filterHandler" prop="department" label="Department" width="120">
             </el-table-column>
             <el-table-column prop="workshift" label="WorkShift" width="120">
             </el-table-column>
             <el-table-column
-                :filters="[{text: 'Morning', value: 'Morning'}, {text: 'Afternoon', value: 'Afternoon'}, {text: 'Evening', value: 'Evening'}]"
+                :filters="[{ text: 'Morning', value: 'Morning' }, { text: 'Afternoon', value: 'Afternoon' }, { text: 'Evening', value: 'Evening' }]"
                 :filter-method="filterHandler" prop="attendance" label="Attendance" width="120">
             </el-table-column>
-            <el-table-column :filters="[{text: 'Yes', value: 'Yes'}, {text: 'No', value: 'No'}]"
+            <el-table-column :filters="[{ text: 'Yes', value: 'Yes' }, { text: 'No', value: 'No' }]"
                 :filter-method="filterHandler" prop="arrival" label="Arrival" width="120">
             </el-table-column>
             <el-table-column sortable prop="salary" label="Salary/Hour" width="125">
@@ -49,17 +50,17 @@
         </el-table>
         <!--View Details Window-->
         <el-dialog title="Details" :visible.sync="dialogVisible" width="30%">
-            <span>ID: {{id}}</span><br />
-            <span>Name: {{name}}</span><br />
-            <span>Gender: {{gender}}</span><br />
-            <span>Age: {{age}}</span><br />
-            <span>Email: {{email}}</span><br />
-            <span>Address: {{address}}</span><br />
-            <span>Salary/Hour: {{salary}}</span><br />
-            <span>Department: {{department}}</span><br />
-            <span>Work Shift: {{workshift}}</span><br />
-            <span>Attendance: {{attendance}}</span><br />
-            <span>Arrival: </span><span>{{arrival}}</span>
+            <span>ID: {{ id }}</span><br />
+            <span>Name: {{ name }}</span><br />
+            <span>Gender: {{ gender }}</span><br />
+            <span>Age: {{ age }}</span><br />
+            <span>Email: {{ email }}</span><br />
+            <span>Address: {{ address }}</span><br />
+            <span>Salary/Hour: {{ salary }}</span><br />
+            <span>Department: {{ department }}</span><br />
+            <span>Work Shift: {{ workshift }}</span><br />
+            <span>Attendance: {{ attendance }}</span><br />
+            <span>Arrival: </span><span>{{ arrival }}</span>
             <span slot="footer" class="dialog-footer">
                 <el-button type="primary" @click="dialogVisible = false" plain>OK</el-button>
             </span>
@@ -76,7 +77,7 @@
                         style="width:100%" value-format="yyyy-MM-dd"></el-date-picker>
                 </el-form-item>
                 <el-form-item label="Email" :label-width="formLabelWidth" :rules="[
-                  { type: 'email', message: 'Email not valid!', trigger: ['blur', 'change'] }
+                    { type: 'email', message: 'Email not valid!', trigger: ['blur', 'change'] }
                 ]">
                     <el-input v-model="addForm.email" autocomplete="off"></el-input>
                 </el-form-item>
@@ -104,15 +105,33 @@
             <div slot="footer" class="dialog-footer">
                 <el-button @click="addFormVisible = false" plain>Cancel</el-button>
                 <el-button type="primary"
-                    @click="addNewEmployee(addForm.name,addForm.gender,addForm.age,addForm.email,addForm.address,addForm.workshift,addForm.salary,addForm.department)"
+                    @click="addNewEmployee(addForm.name, addForm.gender, addForm.age, addForm.email, addForm.address, addForm.workshift, addForm.salary, addForm.department)"
                     plain>
                     Submit</el-button>
+            </div>
+        </el-dialog>
+        <!--Recycle Bin-->
+        <el-dialog title="Recycle Bin" :visible.sync="binFormVisible">
+            <el-table :data="deletedData" border style="width: 100%">
+                <el-table-column fixed prop="id" label="ID" width="100">
+                </el-table-column>
+                <el-table-column prop="name" label="Name" width="120">
+                </el-table-column>
+                <el-table-column fixed="right" label="Action" width="180">
+                    <template slot-scope="scope">
+                        <el-button @click="recover(scope.row.id)" type="text" size="small">Recover</el-button>
+                        <el-button @click="deleteForever(scope.row.id)" type="text" size="small">Delete</el-button>
+                    </template>
+                </el-table-column>
+            </el-table>
+            <div slot="footer" class="dialog-footer">
+                <el-button @click="binFormVisible = false" plain>Cancel</el-button>
             </div>
         </el-dialog>
         <!--Edit-->
         <el-dialog title="Edit Employee" :visible.sync="editFormVisible">
             <el-form :model="editForm">
-                <span>You are editing ID: {{id}}</span><br />
+                <span>You are editing ID: {{ id }}</span><br />
                 <el-form-item label="Name" :label-width="formLabelWidth">
                     <el-input v-model="editForm.name" autocomplete="off"></el-input>
                 </el-form-item>
@@ -122,7 +141,7 @@
                     </el-date-picker>
                 </el-form-item>
                 <el-form-item label="Email" :label-width="formLabelWidth" :rules="[
-                  { type: 'email', message: 'Email not valid!', trigger: ['blur', 'change'] }
+                    { type: 'email', message: 'Email not valid!', trigger: ['blur', 'change'] }
                 ]">
                     <el-input v-model="editForm.email" autocomplete="off"></el-input>
                 </el-form-item>
@@ -149,7 +168,7 @@
             <div slot="footer" class="dialog-footer">
                 <el-button @click="editFormVisible = false" plain>Cancel</el-button>
                 <el-button type="primary"
-                    @click="editEmployee(id,editForm.name,editForm.gender,editForm.age,editForm.email,editForm.address,editForm.workshift,editForm.salary,editForm.department)"
+                    @click="editEmployee(id, editForm.name, editForm.gender, editForm.age, editForm.email, editForm.address, editForm.workshift, editForm.salary, editForm.department)"
                     plain>
                     Submit</el-button>
                 <el-button @click="resetPassword(id)" type="warning" plain>Reset Password</el-button>
@@ -177,13 +196,12 @@ export default {
                         var workshift = info[i].WorkShift
                         var attendance = info[i].Attendance
                         var age = info[i].Age
-                        console.log(Date.parse(age))
                         tableDataInfo.push(
                             {
                                 id: info[i].ID,
                                 name: info[i].Name,
                                 gender: info[i].Gender,
-                                age: Math.ceil((this.nowTime-Date.parse(age))/31536000000),
+                                age: Math.ceil((this.nowTime - Date.parse(age)) / 31536000000),
                                 email: info[i].Email,
                                 workshift: info[i].WorkShift,
                                 attendance: info[i].Attendance,
@@ -202,6 +220,32 @@ export default {
                 return
             })
             return tableDataInfo
+        },
+        loadBinData() {
+            let deletedData = new Array();
+            // let total = 0;
+            var i = 0;
+            this.$request({
+                url: "/loadRecycledData",
+                method: "post"
+            }).then(res => {
+                var info = res.data;
+                if (info != 'undefined') {
+                    for (i = 0; i < info.length; i++) {
+                        deletedData.push(
+                            {
+                                id: info[i].ID,
+                                name: info[i].Name,
+                            }
+                        )
+                    }
+                    return deletedData
+                }
+            }).catch(err => {
+                this.loading = false;
+                return
+            })
+            return deletedData
         },
         calcArrival(workshift, attendance) {
             if (workshift === attendance) {
@@ -241,6 +285,33 @@ export default {
             this.salary = row.salary;
             this.address = row.address;
         },
+        recover(id) {
+            this.$request({
+                url: "/rollbackEmployee",
+                params: { id },
+                method: "post"
+            }).then(res => {
+                var info = res.data;
+                alert(info);
+            })
+        },
+        deleteForever(id) {
+            if (confirm("Remove this employee?")) {
+                this.$request({
+                    url: "/removeEmployee",
+                    params: { id },
+                    method: "post"
+                }).then(res => {
+                    var info = res.data;
+                    alert(info);
+                })
+            } else {
+                return false;
+            }
+        },
+        recycleBin() {
+            this.binFormVisible = true
+        },
         resetPassword(id) {
             this.$request({
                 url: "/resetEmployeePassword",
@@ -256,7 +327,7 @@ export default {
         removeEmployee(id) {
             if (confirm("Remove this employee?")) {
                 this.$request({
-                    url: "/removeEmployee",
+                    url: "/recycleEmployee",
                     params: { id },
                     method: "post"
                 }).then(res => {
@@ -312,6 +383,7 @@ export default {
         },
         reload() {
             this.tableData = this.loadData();
+            this.deletedData = this.loadBinData();
             this.num++;
             return this.tableData;
         }
@@ -319,14 +391,17 @@ export default {
 
     data() {
         var a = this.loadData()
+        var b = this.loadBinData()
         var num = 0;
         return {
             nowTime: new Date().getTime(),
             num: num,
             tableData: a,
+            deletedData: b,
             dialogVisible: false,
             addFormVisible: false,
             editFormVisible: false,
+            binFormVisible: false,
             id: null,
             name: null,
             gender: null,
