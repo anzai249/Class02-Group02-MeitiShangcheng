@@ -19,9 +19,9 @@ body {
 <template>
     <div class="checkShift">
         <h1>-Your Work Shift-</h1><br />
-        <h2>{{currentWorkShift[0]}}</h2>
+        <h2>{{ currentWorkShift[0] }}</h2>
         <input type="button" value="Check" id="btn" @click="checkIt(userid)">
-        <h2 :key="this.statuKey">Status: {{currentStatus[0]}}</h2>
+        <h2 :key="this.statuKey">Status: {{ currentStatus[0] }}</h2>
     </div>
 </template>
 <script>

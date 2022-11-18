@@ -1,5 +1,6 @@
 <template>
-  <canvas ref="canvas" @click="draw" width="120" height="38" style="cursor: pointer; border-radius: 4px; border: 1px solid #DCDFE6; border-radius: 4px;"></canvas>
+  <canvas ref="canvas" @click="draw" width="120" height="38"
+    style="cursor: pointer; border-radius: 4px; border: 1px solid #DCDFE6; border-radius: 4px;"></canvas>
 </template>
 <script>
 export default {

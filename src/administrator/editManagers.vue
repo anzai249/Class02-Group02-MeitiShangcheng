@@ -25,9 +25,9 @@
         </el-table>
         <!--View Details Window-->
         <el-dialog title="Details" :visible.sync="dialogVisible" width="30%">
-            <span>ID: {{id}}</span><br />
-            <span>Name: {{name}}</span><br />
-            <span>Email: {{email}}</span><br />
+            <span>ID: {{ id }}</span><br />
+            <span>Name: {{ name }}</span><br />
+            <span>Email: {{ email }}</span><br />
             <span slot="footer" class="dialog-footer">
                 <el-button type="primary" @click="dialogVisible = false" plain>OK</el-button>
             </span>
@@ -45,14 +45,14 @@
             </el-form>
             <div slot="footer" class="dialog-footer">
                 <el-button @click="addFormVisible = false" plain>Cancel</el-button>
-                <el-button type="primary" @click="addNewMerchandise(addForm.name,addForm.email)" plain>
+                <el-button type="primary" @click="addNewMerchandise(addForm.name, addForm.email)" plain>
                     Submit</el-button>
             </div>
         </el-dialog>
         <!--Edit-->
         <el-dialog title="Edit" :visible.sync="editFormVisible">
             <el-form :model="editForm">
-                <span>You are editing ID: {{id}}</span><br />
+                <span>You are editing ID: {{ id }}</span><br />
                 <el-form-item label="Name" :label-width="formLabelWidth">
                     <el-input v-model="editForm.name" autocomplete="off"></el-input>
                 </el-form-item>
@@ -62,7 +62,7 @@
             </el-form>
             <div slot="footer" class="dialog-footer">
                 <el-button @click="editFormVisible = false" plain>Cancel</el-button>
-                <el-button type="primary" @click="editManager(id,editForm.name,editForm.email)" plain>
+                <el-button type="primary" @click="editManager(id, editForm.name, editForm.email)" plain>
                     Submit</el-button>
                 <!-- <el-button @click="resetPassword(id)" type="warning" plain>Reset Password</el-button> -->
                 <el-button @click="removeManager(id)" type="danger" plain>Remove Manager</el-button>

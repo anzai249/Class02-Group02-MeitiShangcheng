@@ -16,7 +16,7 @@ body {
 </style>
 <template>
     <div class="editInfo">
-        <h2>Your ID is {{userid}}</h2>
+        <h2>Your ID is {{ userid }}</h2>
         <hr />
         <el-form :inline="true" :model="editName" class="edit-name">
             <el-form-item label="Name" id="whiteLabel">
@@ -41,7 +41,7 @@ body {
             </el-form-item>
             <el-form-item>
                 <el-button type="primary"
-                    @click="nameOnSubmit(userid,editName.name,editName.gender,editName.age,editName.email,editName.address)">
+                    @click="nameOnSubmit(userid, editName.name, editName.gender, editName.age, editName.email, editName.address)">
                     Submit</el-button>
             </el-form-item>
         </el-form>
@@ -54,11 +54,11 @@ body {
                 <el-input v-model="editPass.new" placeholder="Your New Password" show-password></el-input>
             </el-form-item>
             <el-form-item>
-                <el-button type="primary" @click="passOnSubmit(userid,editPass.old,editPass.new)">Submit
+                <el-button type="primary" @click="passOnSubmit(userid, editPass.old, editPass.new)">Submit
                 </el-button>
             </el-form-item>
         </el-form>
-        <h4>Your hour salary: {{salary[0]}}</h4>
+        <h4>Your hour salary: {{ salary[0] }}</h4>
     </div>
 </template>
 <script>

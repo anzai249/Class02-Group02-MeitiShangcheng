@@ -16,7 +16,7 @@ body {
 </style>
 <template>
     <div class="editInfo">
-        <h2>Your ID is {{userid}}</h2>
+        <h2>Your ID is {{ userid }}</h2>
         <hr />
         <el-form :inline="true" :model="editName" class="edit-name">
             <el-form-item label="Name" id="whiteLabel">
@@ -26,7 +26,7 @@ body {
                 <el-input v-model="editName.email" placeholder="Your New Email"></el-input>
             </el-form-item>
             <el-form-item>
-                <el-button type="primary" @click="nameOnSubmit(id,editName.name,editName.email)">Submit</el-button>
+                <el-button type="primary" @click="nameOnSubmit(id, editName.name, editName.email)">Submit</el-button>
             </el-form-item>
         </el-form>
         <hr />
@@ -38,7 +38,7 @@ body {
                 <el-input v-model="editPass.new" placeholder="Your New Password" show-password></el-input>
             </el-form-item>
             <el-form-item>
-                <el-button type="primary" @click="passOnSubmit(id,editPass.old,editPass.new)">Submit</el-button>
+                <el-button type="primary" @click="passOnSubmit(id, editPass.old, editPass.new)">Submit</el-button>
             </el-form-item>
         </el-form>
     </div>
@@ -90,7 +90,7 @@ export default {
             })
             return { Name, Email }
         },
-        nameOnSubmit (id, name, email) {
+        nameOnSubmit(id, name, email) {
             if (!id || !name || !email) {
                 alert('Please fill all of the information')
                 return;

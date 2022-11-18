@@ -190,7 +190,7 @@ export default {
               }
           }
         })
-      }else{
+      } else {
         alert('Wrong validate code!')
       }
     },

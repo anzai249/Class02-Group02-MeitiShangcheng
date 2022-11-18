@@ -17,7 +17,7 @@ body {
                     out</a>
             </el-menu-item>
             <el-menu-item style="-webkit-app-region: drag;">&ensp;&ensp;<i class="el-icon-rank"></i>&ensp;&ensp;Hello,
-                {{userName}}!
+                {{ userName }}!
             </el-menu-item>
         </el-menu>
         <router-view :userid="userid"></router-view>
@@ -40,7 +40,7 @@ export default {
         logOut() {
             if (confirm("Log out?")) {
                 this.$router.push('/')
-            }else{
+            } else {
                 return;
             }
         }

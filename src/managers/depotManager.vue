@@ -13,15 +13,15 @@
         <el-table v-loading="loading" max-height="490" :data='tableData' border :key="num" style="width: 100%;">
             <el-table-column sortable fixed prop="id" label="ID" width="100">
             </el-table-column>
-            <el-table-column :filters="[{text: 'Desktop', value: 'Desktop'}, 
-            {text: 'Laptop', value: 'Laptop'}, 
-            {text: 'Headset', value: 'Headset'}, 
-            {text: 'Tablet', value: 'Tablet'}, 
-            {text: 'Keyboard', value: 'Keyboard'}, 
-            {text: 'Mouse', value: 'Mouse'}, 
-            {text: 'CPU', value: 'CPU'}, 
-            {text: 'Harddisk', value: 'Harddisk'}, 
-            {text: 'GraphicsCard', value: 'GraphicsCard'}
+            <el-table-column :filters="[{ text: 'Desktop', value: 'Desktop' },
+            { text: 'Laptop', value: 'Laptop' },
+            { text: 'Headset', value: 'Headset' },
+            { text: 'Tablet', value: 'Tablet' },
+            { text: 'Keyboard', value: 'Keyboard' },
+            { text: 'Mouse', value: 'Mouse' },
+            { text: 'CPU', value: 'CPU' },
+            { text: 'Harddisk', value: 'Harddisk' },
+            { text: 'GraphicsCard', value: 'GraphicsCard' }
             ]" :filter-method="filterHandler" prop="type" label="Type" width="120">
             </el-table-column>
             <el-table-column fixed prop="name" label="Name" width="200">
@@ -41,12 +41,12 @@
         </el-table>
         <!--View Details Window-->
         <el-dialog title="Details" :visible.sync="dialogVisible" width="30%">
-            <span>ID: {{id}}</span><br />
-            <span>Merchandise Name: {{name}}</span><br />
-            <span>Type: {{type}}</span><br />
-            <span>Amount: {{amount}}</span><br />
-            <span>Unit Price: {{price}}</span><br />
-            <span>Last Month Sales: {{sales}}</span><br />
+            <span>ID: {{ id }}</span><br />
+            <span>Merchandise Name: {{ name }}</span><br />
+            <span>Type: {{ type }}</span><br />
+            <span>Amount: {{ amount }}</span><br />
+            <span>Unit Price: {{ price }}</span><br />
+            <span>Last Month Sales: {{ sales }}</span><br />
             <span slot="footer" class="dialog-footer">
                 <el-button type="primary" @click="dialogVisible = false" plain>OK</el-button>
             </span>
@@ -70,14 +70,14 @@
             <div slot="footer" class="dialog-footer">
                 <el-button @click="addFormVisible = false" plain>Cancel</el-button>
                 <el-button type="primary"
-                    @click="addNewMerchandise(addForm.name,addForm.type,addForm.price,addForm.amount)" plain>
+                    @click="addNewMerchandise(addForm.name, addForm.type, addForm.price, addForm.amount)" plain>
                     Submit</el-button>
             </div>
         </el-dialog>
         <!--Edit-->
         <el-dialog title="Edit Merchandise" :visible.sync="editFormVisible">
             <el-form :model="editForm">
-                <span>You are editing ID: {{id}}</span><br />
+                <span>You are editing ID: {{ id }}</span><br />
                 <el-form-item label="Merchandise Name" :label-width="formLabelWidth">
                     <el-input v-model="editForm.name" autocomplete="off"></el-input>
                 </el-form-item>
@@ -94,7 +94,7 @@
             <div slot="footer" class="dialog-footer">
                 <el-button @click="editFormVisible = false" plain>Cancel</el-button>
                 <el-button type="primary"
-                    @click="editMerchandise(id,editForm.name,editForm.type,editForm.price,editForm.amount)" plain>
+                    @click="editMerchandise(id, editForm.name, editForm.type, editForm.price, editForm.amount)" plain>
                     Submit</el-button>
                 <el-button @click="removeMerchandise(id)" type="danger" plain>Remove Merchandise</el-button>
             </div>

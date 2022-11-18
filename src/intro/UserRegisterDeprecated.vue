@@ -46,19 +46,19 @@
     </el-form>
   </div>
 </template>
-  <script>
-  export default {
-    data() {
-      return {
-        form: {
-          name: 'UserLogin',
-        }
-      }
-    },
-    methods: {
-      onSubmit() {
-        console.log('submit!');
+<script>
+export default {
+  data() {
+    return {
+      form: {
+        name: 'UserLogin',
       }
     }
+  },
+  methods: {
+    onSubmit() {
+      console.log('submit!');
+    }
   }
-  </script>
+}
+</script>

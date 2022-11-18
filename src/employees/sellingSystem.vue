@@ -11,15 +11,15 @@
         <el-table v-loading="loading" max-height="490" :data='tableData' border :key="num" style="width: 100%;">
             <el-table-column sortable fixed prop="id" label="ID" width="100">
             </el-table-column>
-            <el-table-column :filters="[{text: 'Desktop', value: 'Desktop'}, 
-            {text: 'Laptop', value: 'Laptop'}, 
-            {text: 'Headset', value: 'Headset'}, 
-            {text: 'Tablet', value: 'Tablet'}, 
-            {text: 'Keyboard', value: 'Keyboard'}, 
-            {text: 'Mouse', value: 'Mouse'}, 
-            {text: 'CPU', value: 'CPU'}, 
-            {text: 'Harddisk', value: 'Harddisk'}, 
-            {text: 'GraphicsCard', value: 'GraphicsCard'}
+            <el-table-column :filters="[{ text: 'Desktop', value: 'Desktop' },
+            { text: 'Laptop', value: 'Laptop' },
+            { text: 'Headset', value: 'Headset' },
+            { text: 'Tablet', value: 'Tablet' },
+            { text: 'Keyboard', value: 'Keyboard' },
+            { text: 'Mouse', value: 'Mouse' },
+            { text: 'CPU', value: 'CPU' },
+            { text: 'Harddisk', value: 'Harddisk' },
+            { text: 'GraphicsCard', value: 'GraphicsCard' }
             ]" :filter-method="filterHandler" prop="type" label="Type" width="120">
             </el-table-column>
             <el-table-column fixed prop="name" label="Name" width="200">
@@ -39,16 +39,16 @@
         <!--Selling-->
         <el-dialog title="Selling" :visible.sync="sellingFormVisible">
             <el-form :model="sellingForm">
-                <span>You are selling ID: {{id}}</span><br />
-                <span>Merchandise Name: {{name}} {{type}}</span><br />
-                <span>Unit Price: {{price}}</span><br />
+                <span>You are selling ID: {{ id }}</span><br />
+                <span>Merchandise Name: {{ name }} {{ type }}</span><br />
+                <span>Unit Price: {{ price }}</span><br />
                 <el-form-item label="Amount will sell" :label-width="formLabelWidth">
                     <el-input v-model="sellingForm.amount" autocomplete="off"></el-input>
                 </el-form-item>
             </el-form>
             <div slot="footer" class="dialog-footer">
                 <el-button @click="sellingFormVisible = false" plain>Cancel</el-button>
-                <el-button type="primary" @click="sellMerchandise(id,sellingForm.amount)" plain>
+                <el-button type="primary" @click="sellMerchandise(id, sellingForm.amount)" plain>
                     Submit</el-button>
             </div>
         </el-dialog>
