@@ -427,6 +427,28 @@ app.post('/resetAttendance', function (req, res) {
         res.send('Success.')
     });
 })
+// resetSales
+app.post('/resetSales', function (req, res) {
+    connection.query('update depot set Sales=?', ['0'], function (error, results, fields) {
+        if (error) throw error;
+        res.send('Success.')
+    });
+})
+// DELETEALL
+app.post('/DELETEALL', function (req, res) {
+    connection.query('TRUNCATE TABLE managers',  function (error, results, fields) {
+        if (error) throw error;
+        res.send('Success.')
+    });
+    connection.query('TRUNCATE TABLE employees',  function (error, results, fields) {
+        if (error) throw error;
+        res.send('Success.')
+    });
+    connection.query('TRUNCATE TABLE depot',  function (error, results, fields) {
+        if (error) throw error;
+        res.send('Success.')
+    });
+})
 // END OF THE ADMIN PAGE //
 // BEGIN OF THE STATIC PAGE //
 // count amount
