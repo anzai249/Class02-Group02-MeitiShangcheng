@@ -2,6 +2,7 @@
 node_modules/
 /dist/
 /outputs/
+/UmlGen/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
